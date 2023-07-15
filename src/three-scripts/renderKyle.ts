@@ -1,5 +1,9 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// @ts-expect-error
+import vertexShader from "./vertexShader.glsl";
+// @ts-expect-error
+import fragmentShader from "./fragmentShader.glsl";
 
 export default function renderKyle(canvas: HTMLElement) {
   let sizes = {
@@ -20,12 +24,30 @@ export default function renderKyle(canvas: HTMLElement) {
   camera.position.z = 3;
 
   scene.add(camera);
-  scene.add(
-    new THREE.Mesh(
-      new THREE.BoxGeometry(1, 1),
-      new THREE.MeshNormalMaterial({ wireframe: true })
-    )
-  );
+
+  // Kyle geometry
+  const geometry = new THREE.SphereGeometry(0.5);
+
+  console.log(geometry);
+  const randomPointCounts = geometry.attributes.position.count;
+  const randomPoints = new Float32Array(randomPointCounts);
+
+  for (let i = 0; i < randomPoints.length; i++) {
+    randomPoints[i] = Math.random();
+  }
+
+  geometry.setAttribute("aRandom", new THREE.BufferAttribute(randomPoints, 1));
+
+  //Kyle Material
+  const material = new THREE.RawShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    wireframe: true,
+  });
+
+  const kyle = new THREE.Mesh(geometry, material);
+
+  scene.add(kyle);
 
   //Orbital controls
   const controls = new OrbitControls(camera, canvas);

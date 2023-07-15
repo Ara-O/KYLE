@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "three": "^0.154.0",
+    "vite-plugin-glsl": "^1.1.2",
     "vue": "^3.3.4"
   },
   "devDependencies": {
