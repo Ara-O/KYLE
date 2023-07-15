@@ -1,4 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: Despairs;
+  src: url("fonts/Despairs.ttf");
+}
+
+@font-face {
+  font-family: Infynyte;
+  src: url("fonts/Infynyte.otf");
+}
 body {
+  box-sizing: border-box;
+  color: white;
   margin: 0px;
+  font-family: "Infynyte";
   overflow: hidden;
 }

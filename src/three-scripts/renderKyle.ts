@@ -13,16 +13,18 @@ export default function renderKyle(canvas: HTMLElement) {
       return this.width / this.height;
     },
   };
+
   const scene = new THREE.Scene();
 
+  //Camera
   const camera = new THREE.PerspectiveCamera(
     35,
     sizes.getAspectRatio(),
     0.1,
     100
   );
-  camera.position.z = 3;
 
+  camera.position.z = 3;
   scene.add(camera);
 
   // Kyle geometry
@@ -51,7 +53,8 @@ export default function renderKyle(canvas: HTMLElement) {
 
   //Orbital controls
   const controls = new OrbitControls(camera, canvas);
-
+  controls.enablePan = false;
+  controls.enableRotate = true;
   //   Renderer
   const renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(sizes.width, sizes.height);
@@ -60,6 +63,7 @@ export default function renderKyle(canvas: HTMLElement) {
   // Animate
   function animate() {
     window.requestAnimationFrame(animate);
+    kyle.rotation.y += 0.001;
     renderer.render(scene, camera);
     controls.update();
   }
