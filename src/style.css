@@ -47,6 +47,16 @@ body {
   border-radius: 10px;
 }
 
+.message-container {
+  width: 100%;
+  /* background-color: pink; */
+  border: solid 2px #358fe1;
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(-16% 0%, 81% -42%, 100% 28%, 100% 100%, -9% 100%, 7% 100%);
+  box-sizing: border-box;
+}
+
 @keyframes expandLine {
   from {
     width: 40px;

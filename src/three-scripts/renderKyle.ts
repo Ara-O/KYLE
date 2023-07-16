@@ -14,6 +14,14 @@ export default function renderKyle(canvas: HTMLElement) {
     },
   };
 
+  let spikeLevel = {
+    value: 1,
+  };
+
+  let angerLevel = {
+    value: 0.0,
+  };
+
   const scene = new THREE.Scene();
 
   //Camera
@@ -45,6 +53,11 @@ export default function renderKyle(canvas: HTMLElement) {
     vertexShader,
     fragmentShader,
     wireframe: true,
+    transparent: true,
+    uniforms: {
+      spikeLevel,
+      angerLevel,
+    },
   });
 
   const kyle = new THREE.Mesh(geometry, material);
@@ -77,6 +90,10 @@ export default function renderKyle(canvas: HTMLElement) {
     camera.aspect = sizes.getAspectRatio();
     camera.updateProjectionMatrix();
   });
+
+  window.setInterval(() => {
+    spikeLevel.value = Math.random() * 1;
+  }, 100);
 
   animate();
 }

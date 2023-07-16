@@ -5,6 +5,7 @@ export default {
     extend: {
       colors: {
         "tech-primary-1": "#358FE1",
+        "tech-primary-2": "#5f99ce",
       },
       width: {
         100: "550px",
