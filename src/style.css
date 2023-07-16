@@ -11,10 +11,48 @@
   font-family: Infynyte;
   src: url("fonts/Infynyte.otf");
 }
+
 body {
   box-sizing: border-box;
   color: white;
   margin: 0px;
   font-family: "Infynyte";
   overflow: hidden;
+}
+
+.dashed-line {
+  transition: all;
+  animation: expandLine 450ms cubic-bezier(0.42, 0, 0.08, 0.88) forwards;
+}
+
+.dashed-line::before {
+  content: "";
+  height: 5px;
+  position: absolute;
+  width: 5px;
+  background-color: #358fe1;
+  left: -5px;
+  top: -2.5px;
+  border-radius: 10px;
+}
+
+.dashed-line::after {
+  content: "";
+  height: 5px;
+  position: absolute;
+  width: 5px;
+  background-color: #358fe1;
+  right: -5px;
+  top: -2.5px;
+  border-radius: 10px;
+}
+
+@keyframes expandLine {
+  from {
+    width: 40px;
+  }
+
+  to {
+    width: 100%;
+  }
 }

@@ -8,7 +8,7 @@ import fragmentShader from "./fragmentShader.glsl";
 export default function renderKyle(canvas: HTMLElement) {
   let sizes = {
     height: window.innerHeight,
-    width: window.innerWidth,
+    width: window.innerWidth - 550,
     getAspectRatio() {
       return this.width / this.height;
     },
@@ -54,7 +54,8 @@ export default function renderKyle(canvas: HTMLElement) {
   //Orbital controls
   const controls = new OrbitControls(camera, canvas);
   controls.enablePan = false;
-  controls.enableRotate = true;
+  controls.enableRotate = false;
+
   //   Renderer
   const renderer = new THREE.WebGLRenderer({ canvas });
   renderer.setSize(sizes.width, sizes.height);
@@ -70,7 +71,7 @@ export default function renderKyle(canvas: HTMLElement) {
 
   //   Manage resizing
   window.addEventListener("resize", () => {
-    sizes.width = window.innerWidth;
+    sizes.width = window.innerWidth - 550;
     sizes.height = window.innerHeight;
     renderer.setSize(sizes.width, sizes.height);
     camera.aspect = sizes.getAspectRatio();
