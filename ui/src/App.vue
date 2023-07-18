@@ -1,10 +1,9 @@
 <template>
   <main class="bg-black h-screen w-screen flex items-start">
     <section
-      class="flex items-center flex-col justify-start pr-16 pl-20 py-20 w-100 h-screen"
+      class="flex items-center flex-col justify-start pr-16 pl-20 py-20 w-100 h-screen left-section"
     >
       <Header />
-      <!-- Dashed border -->
 
       <!-- Chat Section -->
       <article class="mt-7 w-full flex flex-col gap-3 relative h-full">
@@ -16,15 +15,17 @@
 
         <!-- CHAT -->
         <h3 class="text-center mt-10 mb-5 text-tech-primary-1">Messages</h3>
-        <div
-          class="border h-auto message-container mb-4 px-6 py-3 text-[12px] pb-[17px] text-tech-primary-2 tracking-wider"
-          :class="{
-            '!border-[#c9c5a3] !text-[#c9c5a3]': message.sender !== 'User',
-          }"
-          v-for="message in chatMessages"
-        >
-          <h4>{{ message.text }}</h4>
-        </div>
+        <article class="h-80 overflow-auto">
+          <div
+            class="border h-auto message-container mb-4 px-6 py-3 text-[12px] pb-[17px] text-tech-primary-2 tracking-wider"
+            :class="{
+              '!border-[#c9c5a3] !text-[#c9c5a3]': message.sender !== 'User',
+            }"
+            v-for="message in chatMessages"
+          >
+            <h4>{{ message.text }}</h4>
+          </div>
+        </article>
 
         <form
           class="flex absolute bottom-1 w-full gap-3"

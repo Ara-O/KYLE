@@ -48,8 +48,12 @@ body {
 }
 
 .message-container {
+  /* background-color: black;
+  opacity: 0.8;
+  background-image: radial-gradient(#313f62 0.5px, #000000 0.5px);
+  background-size: 10px 10px; */
   width: 100%;
-  /* background-color: pink; */
+  background-color: black;
   border: solid 2px #358fe1;
   position: relative;
   overflow: hidden;
@@ -65,4 +69,11 @@ body {
   to {
     width: 100%;
   }
+}
+
+.left-section {
+  background-color: black;
+  opacity: 1;
+  background-image: radial-gradient(#10141c 0.5px, #000000 0.5px);
+  background-size: 10px 10px;
 }
