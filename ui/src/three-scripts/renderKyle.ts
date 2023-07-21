@@ -67,7 +67,7 @@ export default function renderKyle(canvas: HTMLElement) {
   //Orbital controls
   const controls = new OrbitControls(camera, canvas);
   controls.enablePan = false;
-  controls.enableRotate = false;
+  controls.enableRotate = true;
 
   //   Renderer
   const renderer = new THREE.WebGLRenderer({ canvas });
