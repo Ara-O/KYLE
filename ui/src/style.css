@@ -4,12 +4,12 @@
 
 @font-face {
   font-family: Despairs;
-  src: url("fonts/Despairs.ttf");
+  src: url("/fonts/Despairs.ttf");
 }
 
 @font-face {
   font-family: Infynyte;
-  src: url("fonts/Infynyte.otf");
+  src: url("/fonts/Infynyte.otf");
 }
 
 body {
