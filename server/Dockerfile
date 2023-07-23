@@ -19,5 +19,7 @@ RUN go install
 # Expose the port on which the server will listen
 EXPOSE 8080
 
+RUN go build -tags netgo -ldflags '-s -w' -o app
+
 # Set the default command to run when the container starts
-CMD ["go", "run", "main.go"]
+CMD ["./app"]

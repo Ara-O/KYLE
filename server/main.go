@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -15,7 +16,7 @@ func main() {
 	err := godotenv.Load(".env")
 
 	if err != nil {
-		log.Fatal("There was an error reading env variables")
+		fmt.Println("There was an error reading env variables")
 	}
 
 	key := os.Getenv("OPENAI")
