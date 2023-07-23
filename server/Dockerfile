@@ -20,4 +20,4 @@ RUN go install
 EXPOSE 8080
 
 # Set the default command to run when the container starts
-CMD ["start-server"]
+CMD ["go", "run", "main.go"]
