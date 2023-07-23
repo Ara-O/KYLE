@@ -1,5 +1,5 @@
 # Use the latest official Golang image
-FROM golang:1:20
+FROM golang:1.20
 
 # Set the working directory inside the container
 WORKDIR /server
