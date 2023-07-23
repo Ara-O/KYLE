@@ -29,6 +29,11 @@ func main() {
 		return err
 	})
 
+	app.Get("/server", func(c *fiber.Ctx) error {
+		c.SendString("Helthi")
+		return nil
+	})
+
 	app.Listen(":8080")
 }
 
