@@ -2,25 +2,24 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/joho/godotenv"
 	"github.com/sashabaranov/go-openai"
 )
 
-type EnvKeys struct {
-	OpenAI string `json:"openai"`
-}
-
 func main() {
-	key, err := readEnvVariables()
-	client := openai.NewClient(key)
+	err := godotenv.Load()
 
 	if err != nil {
-		log.Fatal("Error reading keys")
+		log.Fatal("There was an error reading env variables")
 	}
+
+	key := os.Getenv("OPENAI")
+	client := openai.NewClient(key)
 
 	app := fiber.New()
 	app.Use(cors.New())
@@ -42,7 +41,7 @@ func handleIncomingMessage(c *fiber.Ctx, client *openai.Client) error {
 
 	test := []openai.ChatCompletionMessage{{
 		Role:    openai.ChatMessageRoleSystem,
-		Content: "You are a helpful ai companion named Kyle",
+		Content: os.Getenv("PROMPT"),
 	}}
 
 	(*p) = append(test, *p...)
@@ -61,7 +60,6 @@ func handleIncomingMessage(c *fiber.Ctx, client *openai.Client) error {
 	}
 
 	c.JSON(resp.Choices[0].Message.Content)
-	fmt.Println((*p))
 
 	return nil
 }
