@@ -29,7 +29,7 @@
             v-model="userMessage"
             class="w-full border color text-tech-primary-2 bg-black border-black outline-none border-b-tech-primary-1"
           />
-          <button class="pointer hover:rotate-180 transition-all" type="submit">
+          <button class="pointer hover:rotate-180 transition-all" :class="{' animate-spin':aiIsThinking}" type="submit">
             <img src="/button.png" class="w-10" alt="Button" />
           </button>
         </form>
@@ -41,7 +41,7 @@ import axios from "axios"
 import { ref, nextTick } from 'vue';
 import Instruction from './Instruction.vue';
 let userMessage = ref<string>("");
-
+let aiIsThinking = ref<boolean>(false)
 const emits = defineEmits(["onAISpeak", "stopKyle"])
 
 type Chat = {
@@ -62,8 +62,11 @@ let chatMessages = ref<Chat[]>([]);
     })
 
     userMessage.value = "";
+
+    aiIsThinking.value = true
     let res = await axios.post("http://localhost:8080/sendMessage", chatMessages.value)
-   
+    aiIsThinking.value = false
+    
     chatMessages.value.push({
       role: "assistant",
       content: res.data
