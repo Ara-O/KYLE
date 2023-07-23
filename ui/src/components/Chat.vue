@@ -8,7 +8,7 @@
 
         <!-- CHAT -->
         <h3 class="text-center mt-10 mb-5 text-tech-primary-1">Messages</h3>
-        <article ref="messagesContainer" class="h-80 overflow-auto messages-box" style="overflow-anchor: auto;">
+        <article ref="messagesContainer" class="h-72 overflow-auto messages-box" style="overflow-anchor: auto;">
           <div
             class="border h-auto message-container mb-4 px-6 py-3 text-[12px] pb-[17px] text-tech-primary-2 tracking-wider"
             :class="{
@@ -42,6 +42,8 @@ import { ref, nextTick } from 'vue';
 import Instruction from './Instruction.vue';
 let userMessage = ref<string>("");
 
+const emits = defineEmits(["onAISpeak", "stopKyle"])
+
 type Chat = {
   role: string,
   content: string
@@ -60,17 +62,29 @@ let chatMessages = ref<Chat[]>([]);
     })
 
     userMessage.value = "";
-  let res = await axios.post("http://localhost:8080/sendMessage", chatMessages.value)
-  chatMessages.value.push({
-    role: "assistant",
-    content: res.data
-  })
+    let res = await axios.post("http://localhost:8080/sendMessage", chatMessages.value)
+   
+    chatMessages.value.push({
+      role: "assistant",
+      content: res.data
+    })
 
-  nextTick(()=> {
+    nextTick(()=> {
       if(messagesContainer.value){
         messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight 
       }
     })
- 
+
+    emits("onAISpeak")
+    var speech = new SpeechSynthesisUtterance();
+    speech.text = res.data;
+
+    speech.addEventListener('end', () => {
+       emits("stopKyle");
+      });
+
+    window.speechSynthesis.speak(speech)
 }
+
+
 </script>

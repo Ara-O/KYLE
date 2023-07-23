@@ -5,7 +5,31 @@ import vertexShader from "./vertexShader.glsl";
 // @ts-expect-error
 import fragmentShader from "./fragmentShader.glsl";
 
-export default function renderKyle(canvas: HTMLElement) {
+let spikeLevel = {
+  value: 0.0,
+};
+
+let angerLevel = {
+  value: 0.0,
+};
+
+let interval: any
+
+function moveKyle(){
+    spikeLevel.value = Math.random() * 1;
+  
+}
+
+export function stopKyleMovement(){
+  window.clearInterval(interval)
+  spikeLevel.value = 0
+}
+
+export function updateKyle(){
+ interval =  window.setInterval(moveKyle, 100);
+}
+
+export function renderKyle(canvas: HTMLElement) {
   let sizes = {
     height: window.innerHeight,
     width: window.innerWidth - 550,
@@ -14,13 +38,7 @@ export default function renderKyle(canvas: HTMLElement) {
     },
   };
 
-  let spikeLevel = {
-    value: 1,
-  };
 
-  let angerLevel = {
-    value: 0.0,
-  };
 
   const scene = new THREE.Scene();
 
@@ -91,9 +109,6 @@ export default function renderKyle(canvas: HTMLElement) {
     camera.updateProjectionMatrix();
   });
 
-  window.setInterval(() => {
-    spikeLevel.value = Math.random() * 1;
-  }, 100);
 
   animate();
 }
