@@ -64,7 +64,7 @@ let chatMessages = ref<Chat[]>([]);
     userMessage.value = "";
 
     aiIsThinking.value = true
-    let res = await axios.post("http://localhost:8080/sendMessage", chatMessages.value)
+    let res = await axios.post("https://kyle-jfu0.onrender.com/sendMessage", chatMessages.value)
     aiIsThinking.value = false
     
     chatMessages.value.push({
