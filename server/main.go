@@ -42,7 +42,7 @@ func handleIncomingMessage(c *fiber.Ctx, client *openai.Client) error {
 
 	test := []openai.ChatCompletionMessage{{
 		Role:    openai.ChatMessageRoleSystem,
-		Content: "Your name is kyle, you are very emotionally sensitive, ",
+		Content: "You are a helpful ai companion named Kyle",
 	}}
 
 	(*p) = append(test, *p...)
